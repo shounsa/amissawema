@@ -18,6 +18,21 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/controllers/LiturgoeController.js">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/repository/LiturgieRepository.js">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/routes/liturgie.routes.js">
+          <value>
+            <set />
+          </value>
+        </entry>
       </map>
     </option>
   </component>

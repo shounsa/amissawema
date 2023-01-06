@@ -11,7 +11,12 @@ function createLiturgie(liturgie) {
         data: liturgie
     });
 }
+function getLiturgie(liturgie) {
+    return prisma.Liturgie.findMany({
 
+    });
+}
 module.exports = {
-   createLiturgie
+   createLiturgie,
+    getLiturgie
 };
