@@ -16,7 +16,7 @@ api.use(cors());
 
 api.use(middlewares.errorHandler);
 
-const ads = [{ Message: `Liturgie api is running on Port: ${PORT}` }];
+const ads = [{ Message: `Amissa Wema api is running on Port: ${PORT}` }];
 
 api.get('/', (req, res) => {
     res.send(ads);
