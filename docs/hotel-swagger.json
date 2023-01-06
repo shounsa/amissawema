@@ -1,0 +1,551 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Roomee Hotel API",
+    "description": "Roomee - Gestion des hotels."
+  },
+  "host": "localhost:3016",
+  "basePath": "/",
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/hotel/add": {
+      "post": {
+        "tags": [
+          "Hotel"
+        ],
+        "summary": "Create a new hotel",
+        "description": "Add new hotel to the database",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": " hotel body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Hotel"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Hotel created !!!",
+            "schema": {
+              "$ref": "#/definitions/Hotel"
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/hotel/{id}": {
+      "get": {
+        "tags": [
+          "Hotel"
+        ],
+        "summary": "Retrieve a hotel detail",
+        "description": "Get a hotel detail",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": " hotel Id"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "description": " user access token",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "example": {
+                  "type": "object",
+                  "properties": {
+                    "authorization": {
+                      "type": "string",
+                      "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzQ2ZWVmOGMwYzQ2NmYxNTU2MWMxMzAiLCJqdGkiOiJjYWE2NzA4MS1iN2I5LTQ0ZDQtOGUzMy00NGFiYWJhYWVlOGEiLCJpYXQiOjE2NjU1OTMyNzksImV4cCI6MTY2NTYwNzY3OX0.aJ7S60RSz6BI4NjTht7A7zYYQ_XLb2t7syZMT6BLaeQ"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Hotel"
+        ],
+        "summary": "Delete a hotel",
+        "description": "Delete hotel from the database",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "description": " user access token",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "example": {
+                  "type": "object",
+                  "properties": {
+                    "authorization": {
+                      "type": "string",
+                      "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzQ2ZWVmOGMwYzQ2NmYxNTU2MWMxMzAiLCJqdGkiOiJjYWE2NzA4MS1iN2I5LTQ0ZDQtOGUzMy00NGFiYWJhYWVlOGEiLCJpYXQiOjE2NjU1OTMyNzksImV4cCI6MTY2NTYwNzY3OX0.aJ7S60RSz6BI4NjTht7A7zYYQ_XLb2t7syZMT6BLaeQ"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "name": "id",
+            "in": "body",
+            "required": true,
+            "description": " hotel body",
+            "schema": {
+              "$ref": "#/definitions/Hotel"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Hotel deleted !!!",
+            "schema": {
+              "$ref": "#/definitions/Hotel"
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/hotel/": {
+      "get": {
+        "tags": [
+          "Hotel"
+        ],
+        "summary": "Retrieve all hotel",
+        "description": "Retrieve all hotel from the database",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "description": " user access token",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "example": {
+                  "type": "object",
+                  "properties": {
+                    "authorization": {
+                      "type": "string",
+                      "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzQ2ZWVmOGMwYzQ2NmYxNTU2MWMxMzAiLCJqdGkiOiJjYWE2NzA4MS1iN2I5LTQ0ZDQtOGUzMy00NGFiYWJhYWVlOGEiLCJpYXQiOjE2NjU1OTMyNzksImV4cCI6MTY2NTYwNzY3OX0.aJ7S60RSz6BI4NjTht7A7zYYQ_XLb2t7syZMT6BLaeQ"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Hotel list !!!",
+            "schema": {
+              "$ref": "#/definitions/Hotel"
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Hotel"
+        ],
+        "summary": "Update a hotel",
+        "description": "Update hotel from the database",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "description": " user access token",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "example": {
+                  "type": "object",
+                  "properties": {
+                    "authorization": {
+                      "type": "string",
+                      "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzQ2ZWVmOGMwYzQ2NmYxNTU2MWMxMzAiLCJqdGkiOiJjYWE2NzA4MS1iN2I5LTQ0ZDQtOGUzMy00NGFiYWJhYWVlOGEiLCJpYXQiOjE2NjU1OTMyNzksImV4cCI6MTY2NTYwNzY3OX0.aJ7S60RSz6BI4NjTht7A7zYYQ_XLb2t7syZMT6BLaeQ"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": " hotel body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Hotel"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Hotel updated !!!",
+            "schema": {
+              "$ref": "#/definitions/Hotel"
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/hotel/by/{name}": {
+      "get": {
+        "tags": [
+          "Hotel"
+        ],
+        "summary": "Retrieve hotel by name",
+        "description": "Retrieve hotel by name from the database",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": " hotel name"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "description": " user access token",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "example": {
+                  "type": "object",
+                  "properties": {
+                    "authorization": {
+                      "type": "string",
+                      "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzQ2ZWVmOGMwYzQ2NmYxNTU2MWMxMzAiLCJqdGkiOiJjYWE2NzA4MS1iN2I5LTQ0ZDQtOGUzMy00NGFiYWJhYWVlOGEiLCJpYXQiOjE2NjU1OTMyNzksImV4cCI6MTY2NTYwNzY3OX0.aJ7S60RSz6BI4NjTht7A7zYYQ_XLb2t7syZMT6BLaeQ"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/hotel/list/by/{langage}": {
+      "get": {
+        "tags": [
+          "Hotel"
+        ],
+        "summary": "Retieve hotel with langage filter",
+        "description": "Retieve hotel with langage filter",
+        "parameters": [
+          {
+            "name": "langage",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": " hotel langage",
+            "schema": {
+              "$ref": "#/definitions/Hotel"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "description": " user access token",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "example": {
+                  "type": "object",
+                  "properties": {
+                    "authorization": {
+                      "type": "string",
+                      "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzQ2ZWVmOGMwYzQ2NmYxNTU2MWMxMzAiLCJqdGkiOiJjYWE2NzA4MS1iN2I5LTQ0ZDQtOGUzMy00NGFiYWJhYWVlOGEiLCJpYXQiOjE2NjU1OTMyNzksImV4cCI6MTY2NTYwNzY3OX0.aJ7S60RSz6BI4NjTht7A7zYYQ_XLb2t7syZMT6BLaeQ"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Hotel list !!!",
+            "schema": {
+              "$ref": "#/definitions/Hotel"
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Hotel": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "example": "633f53146efc8b5a63106dd5"
+        },
+        "name": {
+          "type": "string",
+          "example": "GAT Hotel"
+        },
+        "address": {
+          "type": "object",
+          "properties": {
+            "rue": {
+              "type": "string",
+              "example": "string"
+            },
+            "ville": {
+              "type": "string",
+              "example": "string"
+            },
+            "région": {
+              "type": "string",
+              "example": "string"
+            },
+            "pays": {
+              "type": "string",
+              "example": "string"
+            },
+            "latitude": {
+              "type": "string",
+              "example": "double"
+            },
+            "longitude": {
+              "type": "string",
+              "example": "double"
+            }
+          }
+        },
+        "logo": {
+          "type": "string",
+          "example": "https://logoLink"
+        },
+        "langage": {
+          "type": "string",
+          "example": "Fr"
+        },
+        "administrator": {
+          "type": "object",
+          "properties": {
+            "firstname": {
+              "type": "string",
+              "example": "Sebastien"
+            },
+            "lastname": {
+              "type": "string",
+              "example": "DE LA FONTAINE"
+            },
+            "email": {
+              "type": "string",
+              "example": "crepin@novotel.com"
+            },
+            "phone": {
+              "type": "string",
+              "example": "+3369857421"
+            }
+          }
+        },
+        "groupId": {
+          "type": "string",
+          "example": "633f53146efc8b5a63106zz9"
+        }
+      }
+    },
+    "Group": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "example": "633f53146efc8b5a63106zz9"
+        },
+        "name": {
+          "type": "string",
+          "example": "GROUP ELITE"
+        },
+        "administrator": {
+          "type": "object",
+          "properties": {
+            "firstname": {
+              "type": "string",
+              "example": "Sebastien"
+            },
+            "lastname": {
+              "type": "string",
+              "example": "DE LA FONTAINE"
+            },
+            "email": {
+              "type": "string",
+              "example": "crepin@novotel.com"
+            },
+            "phone": {
+              "type": "string",
+              "example": "+3369857421"
+            },
+            "appaccess": {
+              "type": "boolean",
+              "example": true
+            },
+            "position": {
+              "type": "string",
+              "example": "636b6ed55716540d9dc19b17"
+            },
+            "role": {
+              "type": "string",
+              "example": "636e11254bff2aec81626427"
+            },
+            "hotel": {
+              "type": "string",
+              "example": "633f53146efc8b5a63106dd5"
+            }
+          }
+        },
+        "created_at": {
+          "type": "string",
+          "example": "2022-10-06T22:13:39.122Z"
+        },
+        "update_at": {
+          "type": "string",
+          "example": "2022-10-06T22:13:39.122Z"
+        },
+        "deleted_at": {}
+      }
+    },
+    "GroupAdd": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "example": "GROUP ELITE"
+        },
+        "administrator": {
+          "type": "object",
+          "properties": {
+            "firstname": {
+              "type": "string",
+              "example": "Sebastien"
+            },
+            "lastname": {
+              "type": "string",
+              "example": "DE LA FONTAINE"
+            },
+            "email": {
+              "type": "string",
+              "example": "crepin@novotel.com"
+            },
+            "phone": {
+              "type": "string",
+              "example": "+3369857421"
+            },
+            "appaccess": {
+              "type": "boolean",
+              "example": true
+            },
+            "position": {
+              "type": "string",
+              "example": "636b6ed55716540d9dc19b17"
+            },
+            "role": {
+              "type": "string",
+              "example": "636e11254bff2aec81626427"
+            },
+            "hotel": {
+              "type": "string",
+              "example": "633f53146efc8b5a63106dd5"
+            }
+          }
+        }
+      }
+    }
+  }
+}
