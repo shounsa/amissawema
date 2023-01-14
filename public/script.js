@@ -15,6 +15,7 @@ function printMessage(e) {
         const refd = document.querySelector('#refd').value;
         const texte_lecture_2 = document.querySelector('#texte_lecture_2').value;
         const antienne = document.querySelector('#antienne').value;
+        const refe = document.querySelector('#refe').value;
         const texte_evangile = document.querySelector('#texte_evangile').value;
 
         const data = {
@@ -35,6 +36,7 @@ function printMessage(e) {
                 },
                 evangile: {
                     antienne: antienne,
+                    refe: refe,
                     text:texte_evangile
                 }
             }
