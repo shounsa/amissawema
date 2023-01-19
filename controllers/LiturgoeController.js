@@ -50,7 +50,7 @@ async function GetLiturgie(req, res) {
         schema: { $ref: "#/definitions/Hotel" }
     } */
     try {
-        const response = await getLiturgie()
+        const response = await getLiturgie(req.params.date)
             // console.log("response Hotel = ", addResponse)
 
 
@@ -61,9 +61,7 @@ async function GetLiturgie(req, res) {
         return res
             .status(201)
             .json({
-                success: true,
-                message: 'Liturgie list !!',
-                data: response
+                data : response[0]
             });
     } catch (err) {
         console.log(err);

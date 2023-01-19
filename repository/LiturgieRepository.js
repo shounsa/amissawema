@@ -11,8 +11,11 @@ function createLiturgie(liturgie) {
         data: liturgie
     });
 }
-function getLiturgie(liturgie) {
+function getLiturgie(date) {
     return prisma.Liturgie.findMany({
+        where: {
+            jour : date
+        }
 
     });
 }
